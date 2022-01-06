@@ -20,20 +20,34 @@
                                 Dashboards
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul class="mm-show">
+                            {{-- <ul class="mm-show">
                                 <li><a href="index.html">Analytics</a></li>
                                 <li><a href="management-dashboard.html">Management</a></li>
-                                <li><a class="mm-active"
-                                        href="advertisement-dashboard.html">Advertisement</a></li>
+                                <li><a class="mm-active" href="advertisement-dashboard.html">Advertisement</a></li>
                                 <li><a href="helpdesk-dashboard.html">Helpdesk</a></li>
                                 <li><a href="monitoring-dashboard.html">Monitoring</a></li>
                                 <li><a href="crypto-dashboard.html">Cryptocurrency</a></li>
                                 <li><a href="pm-dashboard.html">Project Management</a></li>
                                 <li><a href="product-dashboard.html">Product</a></li>
                                 <li><a href="statistics-dashboard.html">Statistics</a></li>
-                            </ul>
+                            </ul> --}}
+                        </li>
+                        {{-- <li class="app-sidebar__heading">Charts</li> --}}
+                        <li>
+                            <a href="{{route('group.index')}}">
+                                <i class="metismenu-icon pe-7s-graph2">
+                                </i>
+                                Groups
+                            </a>
                         </li>
                         <li>
+                            <a href="{{route('category.index')}}">
+                                <i class="metismenu-icon pe-7s-graph2">
+                                </i>
+                                Categories
+                            </a>
+                        </li>
+                        {{-- <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-browser"></i>
                                 Pages
@@ -480,7 +494,7 @@
                                 <i class="metismenu-icon pe-7s-graph1">
                                 </i>Chart Sparklines
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>

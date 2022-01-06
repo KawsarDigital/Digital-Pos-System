@@ -14,11 +14,13 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="{{asset('favicon.ico')}}">
 
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{ asset('main.07a59de7b920cd76b874.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -52,9 +54,11 @@
                 </div>
                 <div class="app-header">
                     <div class="page-title-heading">
-                        Advertisement
+                        Digital Pos System
                         <div class="page-title-subheading">
-                            This is an example dashboard created using build-in elements and components.
+
+                            Always Sale. Cheap Prices. Full Offer. Save Online. Compare Online. Simple Search. The Best
+                            Price. Compare Simply. Services: Compare, Search, Find Products, Many Offers.
                         </div>
                     </div>
                     <div class="app-header-right">
@@ -629,7 +633,8 @@
                                                                             href="{{ route('logout') }}"
                                                                             onclick="event.preventDefault();
                                                                                       document.getElementById('logout-form').submit();">
-                                                                            <button class="btn-pill btn-primary btn-shine btn">
+                                                                            <button
+                                                                                class="btn-pill btn-primary btn-shine btn">
                                                                                 Logout </button>
                                                                             {{-- <button
                                                                                 class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
@@ -732,8 +737,6 @@
                     <div class="app-header-overlay d-none animated fadeIn"></div>
                 </div>
                 <div class="app-inner-layout app-inner-layout-page">
-
-                    @include('admin.partials.dashboard_header')
 
 
                     @yield('content')

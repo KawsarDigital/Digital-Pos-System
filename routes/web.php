@@ -21,5 +21,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
 
+    //Login Route Here......
+
+    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+    //Group Route Here......
+
+    Route::resource('group', 'Admin\GroupController');
+
+    //Category Route Here......
+
+    Route::resource('category', 'Admin\CategoryController');
+
+});

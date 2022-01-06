@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Login Boxed - Kero HTML Bootstrap 4 Dashboard Template</title>
+    <title>Digital Pos System</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Kero HTML Bootstrap 4 Dashboard Template">
@@ -22,7 +22,6 @@
             <div class="h-100 bg-plum-plate bg-animation">
                 <div class="d-flex h-100 justify-content-center align-items-center">
                     <div class="mx-auto app-login-box col-md-8">
-                        <div class="app-logo-inverse mx-auto mb-3"></div>
                         <div class="modal-dialog w-100 mx-auto">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
