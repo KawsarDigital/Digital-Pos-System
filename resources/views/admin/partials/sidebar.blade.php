@@ -15,29 +15,17 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Menu</li>
                         <li class="mm-active">
-                            <a href="#">
+                            <a href="{{route('dashboard')}}">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 Dashboards
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            {{-- <ul class="mm-show">
-                                <li><a href="index.html">Analytics</a></li>
-                                <li><a href="management-dashboard.html">Management</a></li>
-                                <li><a class="mm-active" href="advertisement-dashboard.html">Advertisement</a></li>
-                                <li><a href="helpdesk-dashboard.html">Helpdesk</a></li>
-                                <li><a href="monitoring-dashboard.html">Monitoring</a></li>
-                                <li><a href="crypto-dashboard.html">Cryptocurrency</a></li>
-                                <li><a href="pm-dashboard.html">Project Management</a></li>
-                                <li><a href="product-dashboard.html">Product</a></li>
-                                <li><a href="statistics-dashboard.html">Statistics</a></li>
-                            </ul> --}}
                         </li>
-                        {{-- <li class="app-sidebar__heading">Charts</li> --}}
                         <li>
                             <a href="{{route('group.index')}}">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>
-                                Groups
+                                Types
                             </a>
                         </li>
                         <li>
@@ -47,52 +35,42 @@
                                 Categories
                             </a>
                         </li>
+                        <li>
+                            <a href="{{route('brand.index')}}">
+                                <i class="metismenu-icon pe-7s-graph2">
+                                </i>
+                                Brands
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('product.index')}}">
+                                <i class="metismenu-icon pe-7s-graph2">
+                                </i>
+                                Products
+                            </a>
+                        </li>
                         {{-- <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-browser"></i>
-                                Pages
+                                Products
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
                             <ul>
                                 <li>
                                     <a href="pages-login.html">
                                         <i class="metismenu-icon"></i>
-                                        Login
+                                        List Product
                                     </a>
                                 </li>
                                 <li>
                                     <a href="pages-login-boxed.html">
                                         <i class="metismenu-icon">
-                                        </i>Login Boxed
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="pages-register.html">
-                                        <i class="metismenu-icon">
-                                        </i>Register
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="pages-register-boxed.html">
-                                        <i class="metismenu-icon">
-                                        </i>Register Boxed
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="pages-forgot-password.html">
-                                        <i class="metismenu-icon">
-                                        </i>Forgot Password
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="pages-forgot-password-boxed.html">
-                                        <i class="metismenu-icon">
-                                        </i>Forgot Password Boxed
+                                        </i>Add Product
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-plugin"></i>
                                 Applications
@@ -494,7 +472,7 @@
                                 <i class="metismenu-icon pe-7s-graph1">
                                 </i>Chart Sparklines
                             </a>
-                        </li> --}}
+                        </li>  --}}
                     </ul>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -39,12 +40,20 @@ class CategoryController extends Controller
     {
         $rules = [
             'title' => 'required',
-            'slug'  => 'required'
+            'slug'  => 'required',
+            'image' => 'required|mimes:jpeg,jpg,png,gif',
         ];
         $this->validate($request,$rules);
         $category_store             = new Category();
         $category_store->title      = $request->input('title');
         $category_store->slug       = $request->input('slug');
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/categories/', $filename);
+            $category_store->image = $filename;
+        }
         $category_store->status     = $request->input('status') == true ? '1' : 0;
         $category_store->save();
        return redirect()->route('category.index')->with('status','Category Added Successfully!');
@@ -86,6 +95,17 @@ class CategoryController extends Controller
         $category_update = Category::findOrFail($id);
         $category_update->title = $request->input('title');
         $category_update->slug = $request->input('slug');
+        if ($request->hasfile('image')) {
+            $destination = 'uploads/categories' . $category_update->image;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/categories/', $filename);
+            $category_update->image = $filename;
+        }
         $category_update->status = $request->input('status') == true ? '1' : '0';
         $category_update->save();
         return redirect()->route('category.index')->with('status','Category Updated Successfully!');

@@ -27,12 +27,20 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
-    //Group Route Here......
+    //Type Route Here......
 
     Route::resource('group', 'Admin\GroupController');
 
     //Category Route Here......
 
     Route::resource('category', 'Admin\CategoryController');
+
+    //Brands Route Here......
+
+    Route::resource('brand', 'Admin\BrandController');
+
+      //Products Route Here......
+
+      Route::resource('product', 'Admin\ProductController');
 
 });

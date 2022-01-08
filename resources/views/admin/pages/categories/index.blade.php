@@ -56,6 +56,7 @@
                                                     <th>ID</th>
                                                     <th>Title</th>
                                                     <th>Slug</th>
+                                                    <th>Image</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -70,7 +71,12 @@
                                                         
                                                         <td>{{ $item->title }}</td>
 
-                                                        <td>{{ $item->slug }}</td>
+                                                        <td style="text-transform: lowercase">{{ $item->slug }}</td>
+
+                                                        <td>
+                                                            <img src="{{ asset('uploads/categories/' . $item->image) }}" width="40px"
+                                                                height="40px" alt="">
+                                                        </td>
 
                                                         <td>
                                                             @if ($item->status == '1')
@@ -110,6 +116,7 @@
                                                     <th>ID</th>
                                                     <th>Title</th>
                                                     <th>Slug</th>
+                                                    <th>Image</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
 

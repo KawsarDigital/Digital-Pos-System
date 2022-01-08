@@ -33,6 +33,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="">Image Upload</label>
+                                                <input type="file" name="image" value="{{ $category_edit->image }}"
+                                                    class="form-control">
+                                                <img src="{{ asset('uploads/categories/' . $category_edit->image) }}" width="60px" alt="">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="status">Status</label>
                                                 <div>
                                                     <input type="checkbox" name="status"

@@ -14,18 +14,19 @@
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
                                         <h5 class="card-title">Add Category</h5>
-                                   
-                                        <a href="{{ route('category.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a>
-                                        
-                                        <form action="{{ route('category.store') }}" class="col-md-10 mx-auto" method="post">
+
+                                        <a href="{{ route('category.index') }}"
+                                            class="btn btn-danger btn-sm pull-right"><i class="fas fa-undo"></i></a>
+
+                                        <form action="{{ route('category.store') }}" class="col-md-10 mx-auto"
+                                            method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="title">Title</label>
                                                 <div>
                                                     <input type="text" class="form-control" name="title"
                                                         placeholder="Title" />
-                                                        @error('title')
+                                                    @error('title')
                                                         <span class="text-danger">
                                                             {{ $message }}
                                                         </span>
@@ -35,9 +36,21 @@
                                             <div class="form-group">
                                                 <label for="slug">Slug</label>
                                                 <div>
-                                                    <input type="slug" class="form-control" name="slug"
-                                                        placeholder="Slug" />
-                                                        @error('slug')
+                                                    <input style="text-transform: lowercase" type="slug"
+                                                        class="form-control" name="slug" placeholder="Slug" />
+                                                    @error('slug')
+                                                        <span class="text-danger">
+                                                            {{ $message }}
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="image">Image Upload</label>
+                                                <div>
+                                                    <input type="file" class="form-control-file" name="image"
+                                                        placeholder="image" />
+                                                    @error('image')
                                                         <span class="text-danger">
                                                             {{ $message }}
                                                         </span>

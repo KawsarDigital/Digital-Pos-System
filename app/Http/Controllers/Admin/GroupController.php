@@ -17,7 +17,7 @@ class GroupController extends Controller
     {
         $group_item = Group::latest()->paginate(10);
      
-        return view('admin.pages.groups.index',compact('group_item'));
+        return view('admin.pages.types.index',compact('group_item'));
     }
 
     /**
@@ -27,7 +27,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.groups.create');
+        return view('admin.pages.types.create');
     }
 
     /**
@@ -40,13 +40,14 @@ class GroupController extends Controller
     {
         $rules = [
             'title' => 'required',
+            'slug' => 'required',
         ];
 
         $this->validate($request,$rules);
 
         $group_item = new Group();
-        $group_item->name = $request->input('name');
         $group_item->title = $request->input('title');
+        $group_item->slug = $request->input('slug');
         $group_item->status = $request->input('status') == true ? '1' : '0';
         $group_item->save();
         return redirect()->route('group.index')->with('status','Group Added Successfully!');
@@ -61,7 +62,7 @@ class GroupController extends Controller
     public function show($id)
     {
         $group_show = Group::findOrFail($id);
-        return view('admin.pages.groups.show',compact('group_show'));
+        return view('admin.pages.types.show',compact('group_show'));
     }
 
     /**
@@ -73,7 +74,7 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group_edit = Group::findOrFail($id);
-        return view('admin.pages.groups.edit',compact('group_edit'));
+        return view('admin.pages.types.edit',compact('group_edit'));
     }
 
     /**
@@ -86,8 +87,8 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         $group_update = Group::findOrFail($id);
-        $group_update->name = $request->input('name');
         $group_update->title = $request->input('title');
+        $group_update->slug = $request->input('slug');
         $group_update->status = $request->input('status') == true ? '1' : '0';
         $group_update->save();
         return redirect()->route('group.index')->with('status','Group Updated Successfully!');
