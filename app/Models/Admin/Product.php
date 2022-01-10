@@ -26,13 +26,13 @@ class Product extends Model
     ];
 
     public function category(){
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-    public function brand(){
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->hasone(Category::class,'id','category_id');
     }
     public function group(){
         return $this->belongsTo(Group::class, 'type_id');
+    }
+    public function brand(){
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 }
 

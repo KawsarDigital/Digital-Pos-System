@@ -13,10 +13,12 @@
             </ul>
         </div>
         <div class="">
-            <a href="{{ route('product.create') }}" class="btn btn-info btn-lg pull-right">
-                <i class="fas fa-plus"></i>
-                <br>
-            </a>
+            <div class="btn-actions-pane-right">
+                <a type="button" href="{{ route('product.create') }}"
+                    class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                    Create New Product
+                </a>
+            </div>
         </div>
     </div>
     <div class="app-inner-layout app-inner-layout-page">
@@ -49,22 +51,17 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table table style="width: 100%;" id="example"
-                                        class="table table-hover table-striped table-bordered">
+                                        <table table style="width: 100%;"
+                                            class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Type</th>
                                                     <th>Category</th>
-                                                    <th>Brand</th>
-                                                    <th>Quantity</th>
+                                                    <th>Name</th>
                                                     <th>Cost</th>
                                                     <th>Price</th>
-                                                    <th>Tax</th>
-                                                    <th>Details</th>
-                                                    <th>Alert Qty</th>
+                                                    <th>Image</th>
+                                                    <th>Quantity</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -75,40 +72,33 @@
 
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-
-
-                                                        <td>{{ $item->type_id }}</td>
-                                                        <td>{{ $item->category_id }}</td>
-                                                        <td>{{ $item->brand_id }}</td>
+                                                        @if ($item->category == null)
+                                                            <td>Null</td>
+                                                        @else
+                                                            <td>{{ $item->category->title }}</td>
+                                                        @endif
                                                         <td>{{ $item->name }}</td>
                                                         <td>{{ $item->cost }}</td>
                                                         <td>{{ $item->price }}</td>
-                                                        <td>{{ $item->product_tax }}</td>
-                                                        <td>{{ $item->Alert_qty }}</td>
-                                                        <td>{{ $item->details }}</td>
-                                                        <td>{{ $item->qty }}</td>
-                                                        <td>{{$item->image}}</td>
-
-
-                                                        {{-- <td>
-                                                            <img src="{{ asset('uploads/categories/' . $item->image) }}"
+                                                        <td>
+                                                            <img src="{{ asset('uploads/products/' . $item->image) }}"
                                                                 width="40px" height="40px" alt="">
-                                                        </td> --}}
-
-                                                        {{-- <td>
+                                                        </td>
+                                                        <td>{{ $item->qty }}</td>
+                                                        <td>
                                                             @if ($item->status == '1')
-                                                                Active
+                                                                <div class="mb-2 mr-2 badge badge-success">Active</div>
 
                                                             @else
-                                                                Deactive
+                                                                <div class="mb-2 mr-2 badge badge-success">Deactive</div>
                                                             @endif
-                                                        </td> --}}
+                                                        </td>
                                                         <td>
                                                             <form action="{{ route('product.destroy', $item->id) }}"
                                                                 method="POST">
                                                                 <a href="{{ route('product.show', $item->id) }}">
 
-                                                                    <button type="button" class="btn-xs btn btn-info"><i
+                                                                    <button type="button" class="btn-xs btn btn-success"><i
                                                                             class="fas fa-eye"></i></i></button>
                                                                 </a>
                                                                 <a href="{{ route('product.edit', $item->id) }}">
@@ -128,24 +118,7 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Type</th>
-                                                    <th>Category</th>
-                                                    <th>Brand</th>
-                                                    <th>Quantity</th>
-                                                    <th>Cost</th>
-                                                    <th>Price</th>
-                                                    <th>Tax</th>
-                                                    <th>Details</th>
-                                                    <th>Alert Quantity</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot>
+
                                         </table>
                                     </div>
                                 </div>

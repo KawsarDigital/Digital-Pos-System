@@ -12,30 +12,66 @@
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
                                         <h5 class="card-title">Show Category</h5>
-                                        <a href="{{ route('category.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a>
-                                        <form action="" class="col-md-10 mx-auto">
-                                            <div class="form-group">
-                                                <label for="title">Title</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="title"
-                                                        value="{{ $category_show->title }}" placeholder="Title" />
+                                        <a href="{{ route('category.index') }}"
+                                            class="btn btn-danger btn-sm pull-right"><i class="fas fa-undo"></i></a>
+                                        <form action="" class="col-md-8 mx-auto">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Title</span>
+                                                </div>
+                                                <input type="text" readonly class="form-control" name="title"
+                                                    value="{{ $category_show->title }}">
+
+                                                @error('title')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Slug</span>
+                                                </div>
+                                                <input type="text" readonly class="form-control" name="slug"
+                                                    value="{{ $category_show->slug }}">
+
+                                                @error('slug')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <br>
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left mr-2">
+                                                    <div class="input-group-prepend"><span class="input-group-text">Image
+                                                        View</span>
+                                                     
+                                                </div>
+                                                </div>
+                                                <div class="widget-content-left mr-3">
+                                                    <div class="widget-content-left">
+                                                        <img src="{{ asset('uploads/categories/' . $category_show->image) }}"
+                                                        width="60px" alt="">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="mane">Slug</label>
-                                                <div>
-                                                    <input type="slug" class="form-control" name="slug"
-                                                        value="{{ $category_show->slug }}" placeholder="Slug" />
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="active" type="radio" name="status" readonly
+                                                        value="1" {{ $category_show->status == '1' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="active">Active</label>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="status">Status</label>
-                                                <div>
-                                                    <input type="checkbox" name="status"
-                                                        {{ $category_show->status == '1' ? 'checked' : '' }}>
-                                                    0=Deactive,1=Active
+                                                <div class="form-check form-check-inline">
+                                                    <input readonly class="form-check-input" id="deactive" type="radio" name="status"
+                                                        value="0" {{ $category_show->status == '0' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="deactive">Deactive</label>
                                                 </div>
+                                                @error('status')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </form>
                                     </div>

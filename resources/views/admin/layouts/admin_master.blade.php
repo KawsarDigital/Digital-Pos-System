@@ -54,12 +54,12 @@
                 </div>
                 <div class="app-header">
                     <div class="page-title-heading">
-                        Digital Pos System
-                        <div class="page-title-subheading">
+                        Digital POS System
+                        {{-- <div class="page-title-subheading">
 
                             Always Sale. Cheap Prices. Full Offer. Save Online. Compare Online. Simple Search. The Best
                             Price. Compare Simply. Services: Compare, Search, Find Products, Many Offers.
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="app-header-right">
                         <div class="search-wrapper">

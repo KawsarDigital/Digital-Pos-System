@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin\Group;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -40,17 +41,18 @@ class GroupController extends Controller
     {
         $rules = [
             'title' => 'required',
-            'slug' => 'required',
+            'status' => 'required',
         ];
 
         $this->validate($request,$rules);
 
         $group_item = new Group();
         $group_item->title = $request->input('title');
-        $group_item->slug = $request->input('slug');
+        $group_item->slug = Str::slug($request->input('title','-'));
         $group_item->status = $request->input('status') == true ? '1' : '0';
         $group_item->save();
-        return redirect()->route('group.index')->with('status','Group Added Successfully!');
+
+        return redirect()->route('group.index')->with('status','Type Added Successfully!');
     }
 
     /**
@@ -88,10 +90,10 @@ class GroupController extends Controller
     {
         $group_update = Group::findOrFail($id);
         $group_update->title = $request->input('title');
-        $group_update->slug = $request->input('slug');
+        $group_update->slug = Str::slug($request->input('title','-'));
         $group_update->status = $request->input('status') == true ? '1' : '0';
         $group_update->save();
-        return redirect()->route('group.index')->with('status','Group Updated Successfully!');
+        return redirect()->route('group.index')->with('status','Type Updated Successfully!');
     }
 
     /**
@@ -104,6 +106,6 @@ class GroupController extends Controller
     {
         $group_delete = Group::findOrFail($id);
         $group_delete->delete();
-        return redirect()->back()->with('destroy','Group Deleted Successfully!');
+        return redirect()->back()->with('destroy','Type Deleted Successfully!');
     }
 }

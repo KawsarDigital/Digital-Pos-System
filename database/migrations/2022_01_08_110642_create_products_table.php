@@ -15,9 +15,11 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('type_id');
-            $table->foreignId('category_id');
-            $table->foreignId('brand_id');
+          
+            // $table->foreignId('type_id');
+            // $table->foreignId('category_id');
+            // $table->foreignId('brand_id');
+
             $table->string('name')->nullable();
             $table->integer('cost')->nullable();
             $table->integer('price')->nullable();
@@ -27,8 +29,16 @@ class CreateProductsTable extends Migration
             $table->longText('details')->nullable();
             $table->integer('qty')->nullable();
             $table->string('status')->default(0);
-
             $table->timestamps();
+
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
+
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('groups')->onDelete('CASCADE');
+
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('CASCADE');
         });
     }
 

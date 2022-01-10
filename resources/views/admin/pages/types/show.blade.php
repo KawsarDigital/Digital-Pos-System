@@ -14,30 +14,49 @@
                                         <h5 class="card-title">Show Type</h5>
                                         <a href="{{ route('group.index') }}" class="btn btn-danger btn-sm pull-right"><i
                                                 class="fas fa-undo"></i></a>
-                                        <form action="" class="col-md-10 mx-auto">
-                                            <div class="form-group">
-                                                <label for="title">Title</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="title"
-                                                        value="{{ $group_show->title }}" placeholder="Title" />
+                                        <form action="" class="col-md-8 mx-auto">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Title</span>
                                                 </div>
+                                                <input readonly type="text" class="form-control" name="title" value="{{$group_show->title}}">
+                                            
+                                                    @error('title')
+                                                        <span class="text-danger">
+                                                            {{ $message }}
+                                                        </span>
+                                                    @enderror
                                             </div>
-                                            <div class="form-group">
-                                                <label for="mane">Slug</label>
-                                                <div>
-                                                    <input type="slug" class="form-control" name="slug"
-                                                        style="text-transform: lowercase" value="{{ $group_show->slug }}"
-                                                        placeholder="Slug" />
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Slug</span>
                                                 </div>
+                                                <input readonly type="text" class="form-control" name="slug" value="{{$group_show->slug}}">
+                                            
+                                                    @error('slug')
+                                                        <span class="text-danger">
+                                                            {{ $message }}
+                                                        </span>
+                                                    @enderror
                                             </div>
-                                            <div class="form-group">
-                                                <label for="status">Status</label>
-                                                <div>
-                                                    <input type="checkbox" name="status"
-                                                        {{ $group_show->status == '1' ? 'checked' : '' }}>
-                                                    0=Deactive,1=Active
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="active" type="radio" name="status"
+                                                        value="1" {{ $group_show->status == '1' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="active">Active</label>
                                                 </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="deactive" type="radio" name="status"
+                                                        value="0" {{ $group_show->status == '0' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="deactive">Deactive</label>
+                                                </div>
+                                                @error('status')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
+
                                         </form>
                                     </div>
                                 </div>

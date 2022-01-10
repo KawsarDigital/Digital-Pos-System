@@ -13,10 +13,13 @@
             </ul>
         </div>
         <div class="">
-            <a href="{{ route('brand.create') }}" class="btn btn-info btn-lg pull-right">
-                <i class="fas fa-plus"></i>
-                <br>
-            </a>
+            <div class="btn-actions-pane-right">
+                <a type="button" href="{{ route('brand.create') }}"
+                    class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                    Create New Brand
+                </a>
+            </div>
+ 
         </div>
     </div>
     <div class="app-inner-layout app-inner-layout-page">
@@ -49,7 +52,7 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table style="width: 100%;" id="example"
+                                        <table style="width: 100%;" 
                                             class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
@@ -81,7 +84,7 @@
                                                                 method="POST">
                                                                 <a href="{{ route('brand.show', $item->id) }}">
 
-                                                                    <button type="button" class="btn-xs btn btn-info"><i
+                                                                    <button type="button" class="btn-xs btn btn-success"><i
                                                                             class="fas fa-eye"></i></i></button>
                                                                 </a>
                                                                 <a href="{{ route('brand.edit', $item->id) }}">
@@ -101,15 +104,6 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Title</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-
-                                                </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
 use App\Http\Controllers\Controller;
@@ -40,13 +41,13 @@ class CategoryController extends Controller
     {
         $rules = [
             'title' => 'required',
-            'slug'  => 'required',
+            'status' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
         ];
         $this->validate($request,$rules);
         $category_store             = new Category();
         $category_store->title      = $request->input('title');
-        $category_store->slug       = $request->input('slug');
+        $category_store->slug       = Str::slug($request->input('title','-'));
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
@@ -94,7 +95,7 @@ class CategoryController extends Controller
     {
         $category_update = Category::findOrFail($id);
         $category_update->title = $request->input('title');
-        $category_update->slug = $request->input('slug');
+        $category_update->slug       = Str::slug($request->input('title','-'));
         if ($request->hasfile('image')) {
             $destination = 'uploads/categories' . $category_update->image;
             if (File::exists($destination)) {

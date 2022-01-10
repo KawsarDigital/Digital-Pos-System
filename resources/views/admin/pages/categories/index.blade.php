@@ -13,10 +13,12 @@
             </ul>
         </div>
         <div class="">
-            <a href="{{ route('category.create') }}" class="btn btn-info btn-lg pull-right">
-                <i class="fas fa-plus"></i>
-                <br>
-            </a>
+            <div class="btn-actions-pane-right">
+                <a type="button" href="{{ route('category.create') }}"
+                    class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                    Create New Category
+                </a>
+            </div>
         </div>
     </div>
     <div class="app-inner-layout app-inner-layout-page">
@@ -49,7 +51,7 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table style="width: 100%;" id="example"
+                                        <table style="width: 100%;"
                                             class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
@@ -68,14 +70,14 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
 
-                                                        
+
                                                         <td>{{ $item->title }}</td>
 
                                                         <td style="text-transform: lowercase">{{ $item->slug }}</td>
 
                                                         <td>
-                                                            <img src="{{ asset('uploads/categories/' . $item->image) }}" width="40px"
-                                                                height="40px" alt="">
+                                                            <img src="{{ asset('uploads/categories/' . $item->image) }}"
+                                                                width="40px" height="40px" alt="">
                                                         </td>
 
                                                         <td>
@@ -91,7 +93,7 @@
                                                                 method="POST">
                                                                 <a href="{{ route('category.show', $item->id) }}">
 
-                                                                    <button type="button" class="btn-xs btn btn-info"><i
+                                                                    <button type="button" class="btn-xs btn btn-success"><i
                                                                             class="fas fa-eye"></i></i></button>
                                                                 </a>
                                                                 <a href="{{ route('category.edit', $item->id) }}">
@@ -111,17 +113,6 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Title</th>
-                                                    <th>Slug</th>
-                                                    <th>Image</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-
-                                                </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>

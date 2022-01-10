@@ -18,35 +18,24 @@
                                         <a href="{{ route('category.index') }}"
                                             class="btn btn-danger btn-sm pull-right"><i class="fas fa-undo"></i></a>
 
-                                        <form action="{{ route('category.store') }}" class="col-md-10 mx-auto"
+                                        <form action="{{ route('category.store') }}" class="col-md-8 mx-auto"
                                             method="post" enctype="multipart/form-data">
                                             @csrf
-                                            <div class="form-group">
-                                                <label for="title">Title</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="title"
-                                                        placeholder="Title" />
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Title</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="title">
+                                            
                                                     @error('title')
                                                         <span class="text-danger">
                                                             {{ $message }}
                                                         </span>
                                                     @enderror
-                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="slug">Slug</label>
-                                                <div>
-                                                    <input style="text-transform: lowercase" type="slug"
-                                                        class="form-control" name="slug" placeholder="Slug" />
-                                                    @error('slug')
-                                                        <span class="text-danger">
-                                                            {{ $message }}
-                                                        </span>
-                                                    @enderror
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Image Upload</span>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="image">Image Upload</label>
                                                 <div>
                                                     <input type="file" class="form-control-file" name="image"
                                                         placeholder="image" />
@@ -57,15 +46,28 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="status">Status</label>
-                                                <div>
-                                                    <input type="checkbox" name="status"> 0=Deactive,1=Active
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="active" type="radio" name="status"
+                                                        value="1">
+                                                    <label class="form-check-label" for="active">Active</label>
                                                 </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="deactive" type="radio" name="status"
+                                                        value="0">
+                                                    <label class="form-check-label" for="deactive">Deactive</label>
+                                                </div>
+                                                @error('status')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
+                                            <br>
 
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-info">
+                                                <button type="submit" class="btn btn-success">
                                                     Submit
                                                 </button>
                                             </div>
