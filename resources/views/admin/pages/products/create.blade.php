@@ -2,22 +2,36 @@
 
 @section('content')
 
+<div class="app-inner-bar">
+    <div class="inner-bar-center">
+        <ul class="nav">
+            <li class="nav-item">
+                <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
+                    <span>Add Product</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="">
+        <div class="btn-actions-pane-right">
+            <a type="button" href="{{ route('product.index') }}"
+                class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                Back
+            </a>
+        </div>
+    </div>
+</div>
+
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-layout__wrapper">
             <div class="app-inner-layout__content pt-1">
                 <div class="tab-content">
+                    <br>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-
-
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Add Product</h5>
-
-                                        <a href="{{ route('product.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a>
-
                                         <form action="{{ route('product.store') }}" class="col-md-8 mx-auto" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
@@ -27,8 +41,8 @@
                                                 </div>
                                                 <select name="type_id" id="type_id" class="form-control">
                                                     <option label="Choose Type"></option>
-                                                    @foreach($types as $item)
-                                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                                    @foreach ($types as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('type_id')
@@ -38,14 +52,15 @@
                                                 @enderror
                                             </div>
                                             <br>
+                                            {{-- Dropdown using for Brand start --}}
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" for="brand_id">Brand</span>
                                                 </div>
                                                 <select name="brand_id" id="brand_id" class="form-control">
                                                     <option label="Choose Brand"></option>
-                                                    @foreach($brands as $item)
-                                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                                    @foreach ($brands as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('brand_id')
@@ -54,15 +69,17 @@
                                                     </span>
                                                 @enderror
                                             </div>
+                                            {{-- Dropdown using for Brand end --}}
                                             <br>
+                                            {{-- Dropdown using for Category start --}}
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" for="category_id">Category</span>
                                                 </div>
                                                 <select name="category_id" id="category_id" class="form-control">
                                                     <option label="Choose category"></option>
-                                                    @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category_id')
@@ -71,7 +88,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-
+                                            {{-- Dropdown using for Category end --}}
                                             <br>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">Name</span>
@@ -162,8 +179,9 @@
                                             </div>
                                             <br>
 
-                                           <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">Image Upload</span>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Image
+                                                        Upload</span>
                                                 </div>
                                                 <div>
                                                     <input type="file" class="form-control-file" name="image"

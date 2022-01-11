@@ -19,7 +19,7 @@
                     Create New Brand
                 </a>
             </div>
- 
+
         </div>
     </div>
     <div class="app-inner-layout app-inner-layout-page">
@@ -52,14 +52,13 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table style="width: 100%;" 
-                                            class="table table-hover table-striped table-bordered">
+                                        <table style="width: 100%;" class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Title</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -71,15 +70,16 @@
 
                                                         <td>{{ $item->title }}</td>
 
-                                                        <td>
+                                                        <td class="text-center">
                                                             @if ($item->status == '1')
-                                                                Active
+                                                                <div class="mb-2 mr-2 badge badge-success">Active</div>
 
                                                             @else
-                                                                Deactive
+                                                                <div class="mb-2 mr-2 badge badge-success">Deactive</div>
                                                             @endif
                                                         </td>
-                                                        <td>
+
+                                                        <td class="text-center">
                                                             <form action="{{ route('brand.destroy', $item->id) }}"
                                                                 method="POST">
                                                                 <a href="{{ route('brand.show', $item->id) }}">
@@ -105,6 +105,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $brand_item,])
                                     </div>
                                 </div>
                             </div>

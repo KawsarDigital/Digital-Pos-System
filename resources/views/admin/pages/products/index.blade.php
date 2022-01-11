@@ -62,8 +62,8 @@
                                                     <th>Price</th>
                                                     <th>Image</th>
                                                     <th>Quantity</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -73,7 +73,7 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         @if ($item->category == null)
-                                                            <td>Null</td>
+                                                            <td>Not Found</td>
                                                         @else
                                                             <td>{{ $item->category->title }}</td>
                                                         @endif
@@ -85,7 +85,7 @@
                                                                 width="40px" height="40px" alt="">
                                                         </td>
                                                         <td>{{ $item->qty }}</td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             @if ($item->status == '1')
                                                                 <div class="mb-2 mr-2 badge badge-success">Active</div>
 
@@ -93,7 +93,7 @@
                                                                 <div class="mb-2 mr-2 badge badge-success">Deactive</div>
                                                             @endif
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <form action="{{ route('product.destroy', $item->id) }}"
                                                                 method="POST">
                                                                 <a href="{{ route('product.show', $item->id) }}">
@@ -118,8 +118,8 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-
                                         </table>
+                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $product_item,])
                                     </div>
                                 </div>
                             </div>

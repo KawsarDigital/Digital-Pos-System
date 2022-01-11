@@ -19,10 +19,6 @@
                     Create New Type
                 </a>
             </div>
-            {{-- <a href="{{ route('group.create') }}" class="btn btn-success btn-lg pull-right">
-                <i class="fas fa-plus"></i>
-                <br>
-            </a> --}}
         </div>
     </div>
     <div class="app-inner-layout app-inner-layout-page">
@@ -62,8 +58,8 @@
                                                     <th>ID</th>
                                                     <th>Title</th>
                                                     <th>Slug</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -78,15 +74,15 @@
 
                                                         <td style="text-transform: lowercase">{{ $item->slug }}</td>
 
-                                                        <td>
+                                                        <td class="text-center">
                                                             @if ($item->status == '1')
-                                                                Active
+                                                            <div class="mb-2 mr-2 badge badge-success">Active</div>
 
-                                                            @else
-                                                                Deactive
-                                                            @endif
+                                                        @else
+                                                            <div class="mb-2 mr-2 badge badge-success">Deactive</div>
+                                                        @endif
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <form action="{{ route('group.destroy', $item->id) }}"
                                                                 method="POST">
                                                                 <a href="{{ route('group.show', $item->id) }}">
@@ -112,6 +108,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $group_item,])
                                     </div>
                                 </div>
                             </div>
@@ -120,44 +117,5 @@
                 </div>
             </div>
         </div>
-                        {{-- Pagination start --}}
-                        @if (count($group_item) > 0)
-                        <span class="pull-right">
-                            <ul class="pagination">
-                                <li class=" @if ($group_item->appends(request()->query())->currentPage() == 1) disabled @endif">
-                                    <a class="" href=" {{ $group_item->appends(request()->query())->url(1) }}">←
-                                        First</a>
-                                </li>
-    
-                                <li class=" @if ($group_item->appends(request()->query())->currentPage() == 1) disabled @endif">
-                                    <a class=""
-                                        href=" {{ $group_item->appends(request()->query())->previousPageUrl() }}"><i
-                                            class="fa fa-angle-double-left"></i></a>
-                                </li>
-                                @foreach(range(1, $group_item->appends(request()->query())->lastPage()) as $i)
-                                @if ($i >= $group_item->appends(request()->query())->currentPage() - 4 && $i <= $group_item->appends(request()->query())->currentPage() + 4)
-                                    @if ($i == $group_item->appends(request()->query())->currentPage())
-                                        <li class="active"><span>{{ $i }}</span></li>
-                                    @else
-                                        <li><a
-                                                href="{{ $group_item->appends(request()->query())->url($i) }}">{{ $i }}</a>
-                                        </li>
-                                    @endif
-                                @endif
-                    @endforeach
-    
-                    <li class=" @if ($group_item->appends(request()->query())->lastPage() == $group_item->appends(request()->query())->currentPage()) disabled @endif">
-                        <a class="" href=" {{ $group_item->appends(request()->query())->nextPageUrl() }}"><i
-                                class="fa fa-angle-double-right"></i></a>
-                    </li>
-                    <li class=" @if ($group_item->appends(request()->query())->lastPage() == $group_item->appends(request()->query())->currentPage()) disabled @endif">
-                        <a class=""
-                            href=" {{ $group_item->appends(request()->query())->url($group_item->lastPage()) }}">Last
-                            →</a>
-                    </li>
-                    </ul>
-                    </span>
-                    @endif
-                    {{-- Pagination End --}}
     </div>
 @endsection

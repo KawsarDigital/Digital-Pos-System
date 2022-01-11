@@ -1,19 +1,38 @@
 @extends('admin.layouts.admin_master')
 
 @section('content')
-
+<div class="app-inner-bar">
+    <div class="inner-bar-center">
+        <ul class="nav">
+            <li class="nav-item">
+                <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
+                    <span>Edit Type</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="">
+        <div class="btn-actions-pane-right">
+            <a type="button" href="{{ route('group.index') }}"
+                class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                Back
+            </a>
+        </div>
+    </div>
+</div>
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-layout__wrapper">
             <div class="app-inner-layout__content pt-1">
                 <div class="tab-content">
+                    <br>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Edit Type</h5>
+                                        {{-- <h5 class="card-title">Edit Type</h5>
                                         <a href="{{ route('group.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a>
+                                                class="fas fa-undo"></i></a> --}}
                                         <form action="{{ route('group.update', $group_edit->id) }}"
                                             class="col-md-8 mx-auto" method="POST">
                                             @csrf

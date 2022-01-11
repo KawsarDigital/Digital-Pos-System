@@ -6,14 +6,14 @@
         <ul class="nav">
             <li class="nav-item">
                 <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                    <span>Create Brand</span>
+                    <span>Create User Group</span>
                 </a>
             </li>
         </ul>
     </div>
     <div class="">
         <div class="btn-actions-pane-right">
-            <a type="button" href="{{ route('brand.index') }}"
+            <a type="button" href="{{ route('userGroup.index') }}"
                 class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
                 Back
             </a>
@@ -32,12 +32,9 @@
 
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        {{-- <h5 class="card-title">Add Brand</h5>
-                                   
-                                        <a href="{{ route('brand.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a> --}}
+                                
                                         
-                                        <form action="{{ route('brand.store') }}" class="col-md-8 mx-auto" method="post">
+                                        <form action="{{ route('userGroup.store') }}" class="col-md-8 mx-auto" method="post">
                                             @csrf
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">Title</span>

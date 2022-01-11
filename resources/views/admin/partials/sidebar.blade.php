@@ -49,17 +49,17 @@
                                 Products
                             </a>
                         </li>
-                        {{-- <li>
+                        <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-browser"></i>
-                                Products
+                                People
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul>
+                            <ul >
                                 <li>
-                                    <a href="pages-login.html">
+                                    <a href="{{route('userGroup.index')}}">
                                         <i class="metismenu-icon"></i>
-                                        List Product
+                                        User Group
                                     </a>
                                 </li>
                                 <li>
@@ -69,7 +69,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li> --}}
+                        </li>
                         {{-- <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-plugin"></i>

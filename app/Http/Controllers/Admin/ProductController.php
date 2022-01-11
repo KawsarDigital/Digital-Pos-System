@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product_item = Product::with('category')->latest()->get();
+        $product_item = Product::latest()->paginate(10);
 
         return view('admin.pages.products.index',compact('product_item'));
     }
@@ -81,7 +81,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product_show = Product::findOrFail($id);
+        $types        = Group::latest()->get();
+        $categories   = Category::latest()->get();
+        $brands       = Brand::latest()->get();
+        return view('admin.pages.products.show',compact('product_show','types','categories','brands'));
     }
 
     /**
@@ -92,7 +96,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product_edit = Product::findOrFail($id);
+        $types        = Group::latest()->get();
+        $categories   = Category::latest()->get();
+        $brands       = Brand::latest()->get();
+        return view('admin.pages.products.edit',compact('product_edit','types','categories','brands'));
     }
 
     /**
@@ -104,7 +112,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product_update = Product::findOrFail($id);
+        $product_update->type_id = $request->input('type_id');
+        $product_update->category_id = $request->input('category_id');
+        $product_update->brand_id = $request->input('brand_id');
+       
+        $product_update->name = $request->input('name');
+        $product_update->cost = $request->input('cost');
+        $product_update->price = $request->input('price');
+        $product_update->product_tax = $request->input('product_tax');
+        if ($request->hasfile('image')) {
+            $destination = 'uploads/products' . $product_update->image;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/products/', $filename);
+            $product_update->image = $filename;
+        }
+        $product_update->alert_qty = $request->input('alert_qty');
+        $product_update->details = $request->input('details');
+        $product_update->qty = $request->input('qty');
+        $product_update->status = $request->input('status') == true ? '1': 0;
+        $product_update->save();
+        return redirect()->route('product.index')->with('status','Product Updated Successfully!');
+
     }
 
     /**

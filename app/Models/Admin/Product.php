@@ -25,14 +25,25 @@ class Product extends Model
         'image',
     ];
 
+    // public function category(){
+    //     return $this->hasOne(Category::class,'id','category_id');
+    // }
+    // public function group(){
+    //     return $this->hasOne(Group::class, 'id' ,'type_id');
+    // }
+    // public function brand(){
+    //     return $this->hasone(Brand::class,'id', 'brand_id');
+    // }
     public function category(){
-        return $this->hasone(Category::class,'id','category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
     public function group(){
-        return $this->belongsTo(Group::class, 'type_id');
+        return $this->belongsTo(Group::class,'type_id','id');
     }
+
     public function brand(){
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->belongsTo(Brand::class,'brand_id','id');
     }
 }
 

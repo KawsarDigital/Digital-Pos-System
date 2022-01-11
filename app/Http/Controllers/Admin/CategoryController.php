@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category_item = Category::latest()->get();
+        $category_item = Category::latest()->paginate(10);
         return view('admin.pages.categories.index',compact('category_item'));
     }
 
@@ -48,6 +48,7 @@ class CategoryController extends Controller
         $category_store             = new Category();
         $category_store->title      = $request->input('title');
         $category_store->slug       = Str::slug($request->input('title','-'));
+
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
@@ -96,8 +97,9 @@ class CategoryController extends Controller
         $category_update = Category::findOrFail($id);
         $category_update->title = $request->input('title');
         $category_update->slug       = Str::slug($request->input('title','-'));
+
         if ($request->hasfile('image')) {
-            $destination = 'uploads/categories' . $category_update->image;
+            $destination = 'uploads/categories' .$category_update->image;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
@@ -108,7 +110,7 @@ class CategoryController extends Controller
             $category_update->image = $filename;
         }
         $category_update->status = $request->input('status') == true ? '1' : '0';
-        $category_update->save();
+        $category_update->update();
         return redirect()->route('category.index')->with('status','Category Updated Successfully!');
     }
 

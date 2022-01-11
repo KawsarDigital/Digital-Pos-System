@@ -6,14 +6,14 @@
         <ul class="nav">
             <li class="nav-item">
                 <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                    <span>Create Brand</span>
+                    <span>Edit User Group</span>
                 </a>
             </li>
         </ul>
     </div>
     <div class="">
         <div class="btn-actions-pane-right">
-            <a type="button" href="{{ route('brand.index') }}"
+            <a type="button" href="{{ route('userGroup.index') }}"
                 class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
                 Back
             </a>
@@ -28,38 +28,34 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-
-
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        {{-- <h5 class="card-title">Add Brand</h5>
-                                   
-                                        <a href="{{ route('brand.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a> --}}
-                                        
-                                        <form action="{{ route('brand.store') }}" class="col-md-8 mx-auto" method="post">
+                                        <form action="{{ route('userGroup.update',$userGroup_edit->id) }}"
+                                            class="col-md-8 mx-auto" method="POST">
                                             @csrf
+                                            @method('PUT')
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">Title</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="title">
-                                            
-                                                    @error('title')
-                                                        <span class="text-danger">
-                                                            {{ $message }}
-                                                        </span>
-                                                    @enderror
+                                                <input type="text"  class="form-control" name="title"
+                                                    value="{{ $userGroup_edit->title }}">
+
+                                                @error('title')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <br>
                                             <div class="input-group">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="active" type="radio" name="status"
-                                                        value="1">
+                                                        value="1" {{ $userGroup_edit->status == '1' ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="active">Active</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="deactive" type="radio" name="status"
-                                                        value="0">
+                                                        value="0" {{ $userGroup_edit->status == '0' ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="deactive">Deactive</label>
                                                 </div>
                                                 @error('status')
@@ -71,12 +67,10 @@
                                             <br>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-success">
-                                                    Submit
+                                                    Update
                                                 </button>
                                             </div>
-
                                         </form>
-
                                     </div>
                                 </div>
                             </div>

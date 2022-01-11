@@ -7,16 +7,16 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                        <span>Category List</span>
+                        <span>User Group List</span>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="">
             <div class="btn-actions-pane-right">
-                <a type="button" href="{{ route('category.create') }}"
+                <a type="button" href="{{ route('userGroup.create') }}"
                     class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
-                    Create New Category
+                    Create User Group
                 </a>
             </div>
         </div>
@@ -57,14 +57,13 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Title</th>
-                                                    <th>Slug</th>
-                                                    <th>Image</th>
+                                                
                                                     <th class="text-center">Status</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($category_item as $item)
+                                                @foreach ($userGroup as $item)
 
 
                                                     <tr>
@@ -73,12 +72,6 @@
 
                                                         <td>{{ $item->title }}</td>
 
-                                                        <td style="text-transform: lowercase">{{ $item->slug }}</td>
-
-                                                        <td>
-                                                            <img src="{{ asset('uploads/categories/' . $item->image) }}"
-                                                                width="40px" height="40px" alt="">
-                                                        </td>
 
                                                         <td class="text-center">
                                                             @if ($item->status == '1')
@@ -89,14 +82,14 @@
                                                         @endif
                                                         </td>
                                                         <td class="text-center">
-                                                            <form action="{{ route('category.destroy', $item->id) }}"
+                                                            <form action="{{ route('userGroup.destroy', $item->id) }}"
                                                                 method="POST">
-                                                                <a href="{{ route('category.show', $item->id) }}">
+                                                                {{-- <a href="{{ route('userGroup.show', $item->id) }}">
 
                                                                     <button type="button" class="btn-xs btn btn-success"><i
                                                                             class="fas fa-eye"></i></i></button>
-                                                                </a>
-                                                                <a href="{{ route('category.edit', $item->id) }}">
+                                                                </a> --}}
+                                                                <a href="{{ route('userGroup.edit', $item->id) }}">
 
                                                                     <button type="button" class="btn-xs btn btn-primary"><i
                                                                             class="far fa-edit"></i></button>
@@ -114,7 +107,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $category_item,])
+                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $userGroup,])
                                     </div>
                                 </div>
                             </div>
