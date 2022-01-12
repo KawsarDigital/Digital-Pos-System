@@ -7,18 +7,19 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                        <span>Product List</span>
+                        <span>Customer List</span>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="">
             <div class="btn-actions-pane-right">
-                <a type="button" href="{{ route('product.create') }}"
+                <a type="button" href="{{ route('customer.create') }}"
                     class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
-                    Create New Product
+                    Create New Customer
                 </a>
             </div>
+
         </div>
     </div>
     <div class="app-inner-layout app-inner-layout-page">
@@ -51,59 +52,34 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table table style="width: 100%;"
-                                            class="table table-hover table-striped table-bordered">
+                                        <table style="width: 100%;" class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Category</th>
                                                     <th>Name</th>
-                                                    <th>Code</th>
-                                                    <th>Cost</th>
-                                                    <th>Price</th>
-                                                    <th>Image</th>
-                                                    <th>Quantity</th>
-                                                    <th class="text-center">Status</th>
+                                                    <th>Phone</th>
+                                                    <th>Email Address</th>
+                                                    <th>Customer Custom Field 1</th>
+                                                    <th>Customer Custom Field 2</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($product_item as $item)
+                                                @foreach ($customerList as $item)
 
 
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        @if ($item->category == null)
-                                                            <td>Not Found</td>
-                                                        @else
-                                                            <td>{{ $item->category->title }}</td>
-                                                        @endif
+
                                                         <td>{{ $item->name }}</td>
-                                                        <td>{{ $item->code }}</td>
-                                                        <td>{{ $item->cost }}</td>
-                                                        <td>{{ $item->price }}</td>
-                                                        <td>
-                                                            <img src="{{ asset('uploads/products/' . $item->image) }}"
-                                                                width="40px" height="40px" alt="">
-                                                        </td>
-                                                        <td>{{ $item->qty }}</td>
+                                                        <td>{{ $item->phone }}</td>
+                                                        <td>{{ $item->email }}</td>
+                                                        <td>{{ $item->field_1 }}</td>
+                                                        <td>{{ $item->field_2 }}</td>
                                                         <td class="text-center">
-                                                            @if ($item->status == '1')
-                                                                <div class="mb-2 mr-2 badge badge-success">Active</div>
-
-                                                            @else
-                                                                <div class="mb-2 mr-2 badge badge-success">Deactive</div>
-                                                            @endif
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <form action="{{ route('product.destroy', $item->id) }}"
+                                                            <form action="{{ route('customer.destroy', $item->id) }}"
                                                                 method="POST">
-                                                                <a href="{{ route('product.show', $item->id) }}">
-
-                                                                    <button type="button" class="btn-xs btn btn-success"><i
-                                                                            class="fas fa-eye"></i></i></button>
-                                                                </a>
-                                                                <a href="{{ route('product.edit', $item->id) }}">
+                                                                <a href="{{ route('customer.edit', $item->id) }}">
 
                                                                     <button type="button" class="btn-xs btn btn-primary"><i
                                                                             class="far fa-edit"></i></button>
@@ -121,7 +97,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $product_item,])
+                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $customerList,])
                                     </div>
                                 </div>
                             </div>

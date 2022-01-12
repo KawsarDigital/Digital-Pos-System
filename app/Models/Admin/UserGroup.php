@@ -2,8 +2,9 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Admin\UserList;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserGroup extends Model
 {
@@ -12,4 +13,8 @@ class UserGroup extends Model
         'title',
         'status',
     ];
+
+    public function userList(){
+        return $this->hasOne(UserList::class);
+    }
 }

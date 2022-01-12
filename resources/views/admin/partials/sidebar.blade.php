@@ -18,7 +18,7 @@
                             <a href="{{route('dashboard')}}">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 Dashboards
-                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                             </a>
                         </li>
                         <li>
@@ -49,28 +49,41 @@
                                 Products
                             </a>
                         </li>
-                        <li>
+                        <li class="mm-{{ (request()->segment(1) == 'userGroup') ? 'active' : '' }}">
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-browser"></i>
                                 People
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul >
-                                <li>
+                            <ul>
+                                <li class="mm-{{ (request()->segment(1) == 'userGroup') ? 'active' : '' }}">
                                     <a href="{{route('userGroup.index')}}">
                                         <i class="metismenu-icon"></i>
                                         User Group
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="pages-login-boxed.html">
+                                    <a href="{{route('userList.index')}}">
                                         <i class="metismenu-icon">
-                                        </i>Add Product
+                                        </i>User List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('customer.index')}}">
+                                        <i class="metismenu-icon">
+                                        </i>Customer List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('supplier.index')}}">
+                                        <i class="metismenu-icon">
+                                        </i>Supplier List
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        {{-- <li>
+                        {{--
+                         <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-plugin"></i>
                                 Applications
@@ -472,7 +485,9 @@
                                 <i class="metismenu-icon pe-7s-graph1">
                                 </i>Chart Sparklines
                             </a>
-                        </li>  --}}
+                        </li>  
+
+                        --}}
                     </ul>
                 </div>
             </div>

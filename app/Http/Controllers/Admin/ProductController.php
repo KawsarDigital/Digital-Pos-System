@@ -31,9 +31,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-     $types = Group::where('status',1)->latest()->get();
-     $brands = Brand::where('status',1)->latest()->get();
-     $categories = Category::where('status',1)->latest()->get();
+     $types         = Group::where('status',1)->latest()->get();
+     $brands        = Brand::where('status',1)->latest()->get();
+     $categories    = Category::where('status',1)->latest()->get();
 
         return view('admin.pages.products.create',compact('categories','brands','types'));
     }
@@ -49,14 +49,15 @@ class ProductController extends Controller
         // return $request;
 
       $product_store = new Product();
-      $product_store->type_id = $request->input('type_id');
-      $product_store->category_id = $request->input('category_id');
-      $product_store->brand_id = $request->input('brand_id');
+      $product_store->type_id       = $request->input('type_id');
+      $product_store->category_id   = $request->input('category_id');
+      $product_store->brand_id      = $request->input('brand_id');
      
-      $product_store->name = $request->input('name');
-      $product_store->cost = $request->input('cost');
-      $product_store->price = $request->input('price');
-      $product_store->product_tax = $request->input('product_tax');
+      $product_store->name          = $request->input('name');
+      $product_store->code          = $request->input('code');
+      $product_store->cost          = $request->input('cost');
+      $product_store->price         = $request->input('price');
+      $product_store->product_tax   = $request->input('product_tax');
       if ($request->hasfile('image')) {
         $file = $request->file('image');
         $extention = $file->getClientOriginalExtension();
@@ -64,10 +65,10 @@ class ProductController extends Controller
         $file->move('uploads/products/', $filename);
         $product_store->image = $filename;
     }
-      $product_store->alert_qty = $request->input('alert_qty');
-      $product_store->details = $request->input('details');
-      $product_store->qty = $request->input('qty');
-      $product_store->status = $request->input('status') == true ? '1': 0;
+      $product_store->alert_qty     = $request->input('alert_qty');
+      $product_store->details       = $request->input('details');
+      $product_store->qty           = $request->input('qty');
+      $product_store->status        = $request->input('status') == true ? '1': 0;
       $product_store->save();
       return redirect()->route('product.index')->with('status','Product Added Successfully!');
 
@@ -118,6 +119,7 @@ class ProductController extends Controller
         $product_update->brand_id = $request->input('brand_id');
        
         $product_update->name = $request->input('name');
+        $product_update->code = $request->input('code');
         $product_update->cost = $request->input('cost');
         $product_update->price = $request->input('price');
         $product_update->product_tax = $request->input('product_tax');

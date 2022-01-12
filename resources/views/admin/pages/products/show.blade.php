@@ -1,25 +1,25 @@
 @extends('admin.layouts.admin_master')
 
 @section('content')
-<div class="app-inner-bar">
-    <div class="inner-bar-center">
-        <ul class="nav">
-            <li class="nav-item">
-                <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                    <span>Show Product</span>
+    <div class="app-inner-bar">
+        <div class="inner-bar-center">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
+                        <span>Show Product</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="">
+            <div class="btn-actions-pane-right">
+                <a type="button" href="{{ route('product.index') }}"
+                    class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                    Back
                 </a>
-            </li>
-        </ul>
-    </div>
-    <div class="">
-        <div class="btn-actions-pane-right">
-            <a type="button" href="{{ route('product.index') }}"
-                class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
-                Back
-            </a>
+            </div>
         </div>
     </div>
-</div>
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-layout__wrapper">
             <div class="app-inner-layout__content pt-1">
@@ -116,6 +116,18 @@
                                             </div>
                                             <br>
                                             <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Code</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="code"
+                                                    value="{{ $product_show->code }}" readonly>
+                                                @error('code')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <br>
+                                            <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">Cost</span>
                                                 </div>
                                                 <input type="cost" class="form-control" name="cost" readonly
@@ -204,7 +216,7 @@
                                                         Upload</span>
                                                 </div>
                                                 <div>
-                                                    
+
                                                     @error('image')
                                                         <span class="text-danger">
                                                             {{ $message }}
@@ -212,7 +224,7 @@
                                                     @enderror
                                                 </div>
                                                 <img src="{{ asset('uploads/products/' . $product_show->image) }}"
-                                                        width="50px" alt="" class="rounded">
+                                                    width="50px" alt="" class="rounded">
                                             </div>
                                             <br>
                                             <div class="input-group text-center">

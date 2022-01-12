@@ -50,4 +50,17 @@ Route::group(['middleware' => 'auth'], function () {
     //User Group Route Here......
 
     Route::resource('userGroup', 'Admin\UsergroupController');
+
+    //User List Route Here......
+
+    Route::resource('userList', 'Admin\UserlistController');
+
+    //Customer List Route Here......
+
+    Route::resource('customer', 'Admin\CustomerController');
+
+    //Supplier List Route Here......
+
+    Route::resource('supplier', 'Admin\SupplierController');
+
 });

@@ -35,6 +35,7 @@
                                         <form action="{{ route('product.store') }}" class="col-md-8 mx-auto" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            {{-- Dropdown using for Type start --}}
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" for="type_id">Type</span>
@@ -51,6 +52,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
+                                            {{-- Dropdown using for Type start --}}
                                             <br>
                                             {{-- Dropdown using for Brand start --}}
                                             <div class="input-group">
@@ -95,6 +97,17 @@
                                                 </div>
                                                 <input type="name" class="form-control" name="name">
                                                 @error('name')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Code</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="code">
+                                                @error('code')
                                                     <span class="text-danger">
                                                         {{ $message }}
                                                     </span>

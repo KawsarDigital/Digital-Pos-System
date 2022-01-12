@@ -32,11 +32,6 @@
 
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        {{-- <h5 class="card-title">Add Brand</h5>
-                                   
-                                        <a href="{{ route('brand.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a> --}}
-                                        
                                         <form action="{{ route('brand.store') }}" class="col-md-8 mx-auto" method="post">
                                             @csrf
                                             <div class="input-group">

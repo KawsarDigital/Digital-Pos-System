@@ -51,13 +51,12 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table style="width: 100%;"
-                                            class="table table-hover table-striped table-bordered">
+                                        <table style="width: 100%;" class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Title</th>
-                                                
+
                                                     <th class="text-center">Status</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
@@ -75,11 +74,11 @@
 
                                                         <td class="text-center">
                                                             @if ($item->status == '1')
-                                                            <div class="mb-2 mr-2 badge badge-success">Active</div>
+                                                                <div class="mb-2 mr-2 badge badge-success">Active</div>
 
-                                                        @else
-                                                            <div class="mb-2 mr-2 badge badge-success">Deactive</div>
-                                                        @endif
+                                                            @else
+                                                                <div class="mb-2 mr-2 badge badge-success">Deactive</div>
+                                                            @endif
                                                         </td>
                                                         <td class="text-center">
                                                             <form action="{{ route('userGroup.destroy', $item->id) }}"

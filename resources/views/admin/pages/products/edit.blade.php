@@ -31,10 +31,6 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        {{-- <h5 class="card-title">Edit Product</h5>
-
-                                        <a href="{{ route('product.index') }}" class="btn btn-danger btn-sm pull-right"><i
-                                                class="fas fa-undo"></i></a> --}}
 
                                         <form action="{{ route('product.update', $product_edit->id) }}"
                                             class="col-md-10 mx-auto" method="POST" enctype="multipart/form-data">
@@ -110,6 +106,17 @@
                                                 <input type="name" class="form-control" name="name"
                                                     value="{{ $product_edit->name }}">
                                                 @error('name')
+                                                    <span class="text-danger">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <br>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">Code</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="code"  value="{{ $product_edit->code }}">
+                                                @error('code')
                                                     <span class="text-danger">
                                                         {{ $message }}
                                                     </span>
