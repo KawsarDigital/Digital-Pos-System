@@ -748,6 +748,6 @@
             @include('admin.partials.footer')
 </body>
 
-<!-- Mirrored from kero.architectui.com/demo/kero-html-sidebar-pro/advertisement-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Dec 2021 09:43:21 GMT -->
 
 </html>
+@yield('modal')

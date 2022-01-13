@@ -14,35 +14,42 @@
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Menu</li>
-                        <li class="mm-active">
+                        <li class="mm-{{ (request()->segment(1) == 'dashboard') ? 'active' : '' }}">
                             <a href="{{route('dashboard')}}">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 Dashboards
                                 {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                             </a>
                         </li>
-                        <li>
+                        <li class="mm-{{ (request()->segment(1) == 'pos') ? 'active' : '' }}">
+                            <a href="{{route('pos.index')}}">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                POS
+                                {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
+                            </a>
+                        </li>
+                        <li class="mm-{{ (request()->segment(1) == 'group') ? 'active' : '' }}">
                             <a href="{{route('group.index')}}">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>
                                 Types
                             </a>
                         </li>
-                        <li>
+                        <li class="mm-{{ (request()->segment(1) == 'category') ? 'active' : '' }}">
                             <a href="{{route('category.index')}}">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>
                                 Categories
                             </a>
                         </li>
-                        <li>
+                        <li class="mm-{{ (request()->segment(1) == 'brand') ? 'active' : '' }}">
                             <a href="{{route('brand.index')}}">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>
                                 Brands
                             </a>
                         </li>
-                        <li>
+                        <li class="mm-{{ (request()->segment(1) == 'product') ? 'active' : '' }}">
                             <a href="{{route('product.index')}}">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>
@@ -62,19 +69,19 @@
                                         User Group
                                     </a>
                                 </li>
-                                <li>
+                                <li class="mm-{{ (request()->segment(1) == 'userList') ? 'active' : '' }}">
                                     <a href="{{route('userList.index')}}">
                                         <i class="metismenu-icon">
                                         </i>User List
                                     </a>
                                 </li>
-                                <li>
+                                <li class="mm-{{ (request()->segment(1) == 'customer') ? 'active' : '' }}">
                                     <a href="{{route('customer.index')}}">
                                         <i class="metismenu-icon">
                                         </i>Customer List
                                     </a>
                                 </li>
-                                <li>
+                                <li class="mm-{{ (request()->segment(1) == 'supplier') ? 'active' : '' }}">
                                     <a href="{{route('supplier.index')}}">
                                         <i class="metismenu-icon">
                                         </i>Supplier List

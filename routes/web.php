@@ -63,4 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('supplier', 'Admin\SupplierController');
 
+    //Supplier List Route Here......
+
+    Route::resource('pos', 'Admin\PosController');
 });
