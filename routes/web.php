@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\PosController;
+use App\Http\Controllers\Admin\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('customer', 'Admin\CustomerController');
 
+    //AjaxCustomer Route Here.......
+    
+    Route::post('customers', [CustomerController::class, 'ajaxCustomer']);
+
     //Supplier List Route Here......
 
     Route::resource('supplier', 'Admin\SupplierController');
@@ -66,4 +72,6 @@ Route::group(['middleware' => 'auth'], function () {
     //Supplier List Route Here......
 
     Route::resource('pos', 'Admin\PosController');
+
+    Route::get('pos/customerData', [PosController::class, 'allposData']);
 });

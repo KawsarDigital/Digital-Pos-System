@@ -9,7 +9,7 @@
                     <br>
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
                                         <form action="#" class="col-md-12 mx-auto" method="post">
@@ -18,6 +18,9 @@
                                                 <select name="customer_id" id="customer_id" class="form-control">
 
                                                     <option label="Choose Customer"></option>
+                                                    @foreach ($customer_list as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
 
                                                 </select>
                                                 <div class="input-group-addon no-print" style="padding: 2px 5px;">
@@ -57,7 +60,7 @@
                                             </div>
 
                                         </form>
-                                        <table class="table table-striped table-condensed table-hover list-table"
+                                        {{-- <table class="table table-striped table-condensed table-hover list-table"
                                             style="margin:0;">
                                             <thead>
                                                 <tr class="success">
@@ -69,17 +72,135 @@
                                                             class="fas fa-trash-alt"></i></th>
                                                 </tr>
                                             </thead>
-                                        </table>
+                                        </table> --}}
+                                        <br>
+                                        <div class="slimScrollDiv"
+                                            style="position: relative; overflow: hidden; width: auto; height: 250px;">
+                                            <div id="list-table-div" style="overflow: hidden; width: auto; height: 76px;">
+                                                <div class="fixed-table-header">
+                                                    <table
+                                                        class="table table-striped table-condensed table-hover list-table"
+                                                        style="margin:0;">
+                                                        <thead>
+                                                            <tr class="success">
+                                                                <th>Product</th>
+                                                                <th style="width: 15%;text-align:center;">Price</th>
+                                                                <th style="width: 15%;text-align:center;">Qty</th>
+                                                                <th style="width: 20%;text-align:center;">Subtotal</th>
+                                                                <th style="width: 20px;" class="satu"><i
+                                                                        class="fas fa-trash-alt"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <table id="posTable"
+                                                    class="table table-striped table-condensed table-hover list-table"
+                                                    style="margin:0px;" data-height="100">
+                                                    <thead>
+                                                        {{-- <tr class="success">
+                                                            <th>Product</th>
+                                                            <th style="width: 15%;text-align:center;">Price</th>
+                                                            <th style="width: 15%;text-align:center;">Qty</th>
+                                                            <th style="width: 20%;text-align:center;">Subtotal</th>
+                                                            <th style="width: 20px;" class="satu"><i
+                                                                    class="fa fa-trash-o"></i></th>
+                                                        </tr> --}}
+                                                    </thead>
+                                                    <tbody>
 
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="totaldiv">
+                                            <table id="totaltbl" class="table table-condensed totals"
+                                                style="margin-bottom:10px;">
+                                                <tbody>
+                                                    <tr class="info">
+                                                        <td width="25%">Total Items</td>
+                                                        <td class="text-right" style="padding-right:10px;"><span
+                                                                id="count">0 (0.00)</span></td>
+                                                        <td width="25%">Total</td>
+                                                        <td class="text-right" colspan="2"><span id="total">0.00</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <td width="25%"><a href="#" id="add_discount">Discount</a></td>
+                                                        <td class="text-right" style="padding-right:10px;"><span
+                                                                id="ds_con">(0.00) 0.00</span></td>
+                                                        <td width="25%"><a href="#" id="add_tax">Order Tax</a></td>
+                                                        <td class="text-right"><span id="ts_con">0.00</span></td>
+                                                    </tr>
+                                                    <tr class="success">
+                                                        <td colspan="2" style="font-weight:bold;">
+                                                            Total Payable <a role="button" data-toggle="modal"
+                                                                data-target="#noteModal">
+                                                                <i class="fa fa-comment"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-right" colspan="2" style="font-weight:bold;">
+                                                            <span id="total-payable">0.00</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div id="botbuttons" class="col-md-12 text-center">
+                                            <div class="row">
+                                                <div class="col-md-4" style="padding: 0;">
+                                                    <div class="btn-group-vertical btn-block">
+                                                        <button type="button" class="btn btn-warning btn-block btn-flat"
+                                                            id="suspend">Hold</button>
+                                                        <button type="button" class="btn btn-danger btn-block btn-flat"
+                                                            id="reset">Cancel</button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-4" style="padding: 0 5px;">
+                                                    <div class="btn-group-vertical btn-block">
+                                                        <button type="button"
+                                                            class="btn bg-purple btn-info btn-block btn-flat"
+                                                            id="print_order">Print Order</button>
+
+                                                        <button type="button"
+                                                            class="btn bg-navy btn-primary btn-block btn-flat"
+                                                            id="print_bill">Print Bill</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="padding: 0;">
+                                                    <button type="button" class="btn btn-success btn-block btn-flat"
+                                                        id="payment" style="height:67px;">Payment</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-
-                            <div class="col-md-7">
+                            <div class="col-md-8">
 
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
+                                        <div class="card-body">
+                                            <div>
+                                                @foreach ($product_item as $item)
+                                                    <button type="button" data-name="Minion Hi" id="product-0101"
+                                                        value="TOY01" class="btn btn-both btn-flat product">
+                                                        <span class="bg-img"><img
+                                                                src="{{ asset('uploads/products/' . $item->image) }}"
+                                                                alt="product_image" style="width: 100px; height: 100px;"
+                                                                class="rounded">
+                                                        </span>
+                                                        <div>
+                                                            <span>{{ $item->code }}</span>
+                                                        </div>
+                                                    </button>
+                                                @endforeach
+                                            </div>
 
+                                        </div>
 
                                     </div>
                                 </div>
@@ -108,109 +229,133 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id=addform>
-                        @csrf
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Name</span>
-                            </div>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name">
-                        </div>
-                        @error('name')
-                            <span class="text-danger">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                        <br>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Phone</span>
-                            </div>
-                            <input type="phone" class="form-control @error('name') is-invalid @enderror" name="phone">
-                        </div>
+                    <ul id="error_list">
 
-                        @error('phone')
-                            <span class="text-danger">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                        <br>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Email
-                                    Address</span>
-                            </div>
-                            <input type="email" class="form-control" name="email">
+                    </ul>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" class="form-control name @error('name') is-invalid @enderror" id="name">
+                    </div>
+                    <span class="text-danger" id="nameError"></span>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">Phone</span>
+                        </div>
+                        <input type="phone" class="form-control phone @error('name') is-invalid @enderror" id="phone">
+                    </div>
 
-                            @error('email')
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+                    <span class="text-danger" id="phoneError"></span>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">Email
+                                Address</span>
                         </div>
-                        <br>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Customer
-                                    Custom Field_1</span>
-                            </div>
-                            <input type="text" class="form-control" name="field_1">
+                        <input type="email" class="form-control email" id="email">
 
-                            @error('field_1')
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+                        <span class="text-danger" id="emailError"></span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">Customer
+                                Custom Field_1</span>
                         </div>
-                        <br>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Customer
-                                    Custom Field_2</span>
-                            </div>
-                            <input type="text" class="form-control" name="field_2">
+                        <input type="text" class="form-control field_1" id="field_1">
 
-                            @error('field_2')
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+                        <span class="text-danger" id="field_1Error"></span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">Customer
+                                Custom Field_2</span>
                         </div>
-                        <br>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Submit</button>
-                        </div>
-                    </form>
+                        <input type="text" class="form-control field_2" id="field_2">
+
+                        <span class="text-danger" id="field_2Error"></span>
+                    </div>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success add_customer">Add
+                            Customer</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-   
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).ready(function() {
+            $(document).on('click', '.add_customer', function(event) {
+                event.preventDefault();
 
-            $("#addform").on('submit', function(e) {
-                e.preventDefault();
-                alert('kawsar');
+                var data = {
+                    'name': $('.name').val(),
+                    'phone': $('.phone').val(),
+                    'email': $('.email').val(),
+                    'field_1': $('.field_1').val(),
+                    'field_2': $('.field_2').val()
+                }
 
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    url: "customers",
+                    success: function(response) {
+                        //  console.log(response);
 
-                // $ajax({
-                //     type: "POST";
-                //     url: "customer"
-                //     data: $("#addform").serialize(),
-                //     success:: function(response) {
-                //         console.log(response)
-                //         $("#customerAdd").modal('hide')
-                //         alert('Data Seved');
-                //     },
-                //     error: function(error) {
-                //         console.log(error)
-                //         alert('Date Not Seved');
-                //     }
-                // });
+                        if (response.status == 400) {
+                            
+                            $.each(response.errors, function(key, err_values) {
+                                $($error_list).append('<li>'+ err_values +'</li>');
+                            });
+                        }
+                    }
+                });
 
             });
-
         });
+
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+
+        //     //================================ store data section start================================
+        //     function addCustomer() {
+        //         var name = $('#name').val();
+        //         var phone = $('#phone').val();
+        //         var email = $('#email').val();
+        //         var customer_field1 = $('#field_1').val();
+        //         var customer_field2 = $('#field_2').val();
+        //         $.ajax({
+        //             type: "POST",
+        //             dataType: "json",
+        //             data: {
+        //                 name: name,
+        //                 phone: phone,
+        //                 email: email,
+        //                 customer_field1: field_1,
+        //                 customer_field2: field_2,
+        //             },
+        //             url: "customer/store",
+        //             success: function(data) {
+        //                 console.log('successfully dada added');
+        //             },
+        //             error: function(error) {
+        //                 $('#nameError').text(error.responseJSON.errors.name);
+        //                 $('#phoneError').text(error.responseJSON.errors.phone);
+        //                 $('#emailError').text(error.responseJSON.errors.email);
+        //             }
+        //         })
+        //     }
+        // //================================ store data section end================================
     </script>
 @endsection

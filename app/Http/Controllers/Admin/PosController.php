@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Product;
+use App\Models\Admin\Customer;
+use App\Http\Controllers\Controller;
 
 class PosController extends Controller
 {
@@ -14,7 +16,9 @@ class PosController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.pos.index');
+        $product_item = Product::where('status',1)->latest()->get();
+        $customer_list = Customer::latest()->get();
+        return view('admin.pages.pos.index',compact('product_item','customer_list'));
     }
 
     /**
