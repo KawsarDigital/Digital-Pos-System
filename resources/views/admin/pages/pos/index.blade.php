@@ -1,12 +1,14 @@
 @extends('admin.layouts.admin_master')
 
 @section('content')
-
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-layout__wrapper">
             <div class="app-inner-layout__content pt-1">
                 <div class="tab-content">
                     <br>
+                    <div id="success_message">
+
+                    </div>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4">
@@ -15,13 +17,11 @@
                                         <form action="#" class="col-md-12 mx-auto" method="post">
                                             @csrf
                                             <div class="input-group">
-                                                <select name="customer_id" id="customer_id" class="form-control">
-
-                                                    <option label="Choose Customer"></option>
+                                                <select name="customer_id" id="customerStore" class="form-control">
+                                                    <option value="0">Choose Customer</option>
                                                     @foreach ($customer_list as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}"}}>{{ $item->name }}</option>
                                                     @endforeach
-
                                                 </select>
                                                 <div class="input-group-addon no-print" style="padding: 2px 5px;">
                                                     <a type="button" data-toggle="modal" data-target="#customerAdd"
@@ -30,12 +30,6 @@
                                                     </a>
                                                 </div>
 
-
-                                                @error('category_id')
-                                                    <span class="text-danger">
-                                                        {{ $message }}
-                                                    </span>
-                                                @enderror
                                             </div>
                                             <br>
 
@@ -229,6 +223,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <ul id="error_list">
 
                     </ul>
@@ -308,13 +303,21 @@
                     data: data,
                     url: "customers",
                     success: function(response) {
-                        //  console.log(response);
+                        console.log(response);
 
                         if (response.status == 400) {
-                            
+                            $('#error_list').html("");
+                            $('#error_list').addClass('alert alert-danger');
                             $.each(response.errors, function(key, err_values) {
-                                $($error_list).append('<li>'+ err_values +'</li>');
+                                $('#error_list').append('<li>' + err_values + '</li>');
                             });
+                        } else {
+                            $('#error_list').html("");
+                            $('#success_message').addClass('alert alert-success');
+                            $('#success_message').text(response.message);
+                            $('#customerAdd').find('input').val("");
+                            $('#customerAdd').modal();
+
                         }
                     }
                 });

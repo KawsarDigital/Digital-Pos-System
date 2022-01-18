@@ -66,7 +66,7 @@ class CustomerController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors'  =>$validator->messages(),
+                'errors'  =>$validator,
             ]);
         } else {
             $customerStore = new Customer();
@@ -77,6 +77,7 @@ class CustomerController extends Controller
             $customerStore->field_2 = $request->input('field_2');
             $customerStore->save();
             return response()->json([
+                'id' => $customerStore->id,
                 'status' => 200,
                 'message'  => 'Customer Added Successfully!',
             ]);
