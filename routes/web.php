@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\PosController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 
 /*
@@ -61,9 +62,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('customer', 'Admin\CustomerController');
 
-    //AjaxCustomer Route Here.......
-    
+    //============================ Ajax Route Here ================================
+
+    Route::get('products/index',[ProductController::class , 'ajaxIndex']);
+
     Route::post('customers', [CustomerController::class, 'ajaxCustomer']);
+
+     //============================ Ajax Route End ================================
 
     //Supplier List Route Here......
 

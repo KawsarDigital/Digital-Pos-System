@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\Admin\Product;
 use App\Models\Admin\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -54,6 +55,7 @@ class CustomerController extends Controller
         $customerStore->save();
         return redirect()->route('customer.index')->with('status', 'Customer Added Successfully!');
     }
+    //================= Ajax coding ===============
 
     public function ajaxCustomer(Request $request)
     {
@@ -66,7 +68,7 @@ class CustomerController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors'  =>$validator,
+                'errors'  => $validator,
             ]);
         } else {
             $customerStore = new Customer();
@@ -83,6 +85,8 @@ class CustomerController extends Controller
             ]);
         }
     }
+
+    //================= Ajax coding ===============
 
     /**
      * Display the specified resource.

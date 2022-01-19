@@ -20,7 +20,7 @@
                                                 <select name="customer_id" id="customerStore" class="form-control">
                                                     <option value="0">Choose Customer</option>
                                                     @foreach ($customer_list as $item)
-                                                        <option value="{{ $item->id }}"}}>{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <div class="input-group-addon no-print" style="padding: 2px 5px;">
@@ -85,25 +85,12 @@
                                                                         class="fas fa-trash-alt"></i></th>
                                                             </tr>
                                                         </thead>
+                                                        <tbody>
+
+                                                        </tbody>
+
                                                     </table>
                                                 </div>
-                                                <table id="posTable"
-                                                    class="table table-striped table-condensed table-hover list-table"
-                                                    style="margin:0px;" data-height="100">
-                                                    <thead>
-                                                        {{-- <tr class="success">
-                                                            <th>Product</th>
-                                                            <th style="width: 15%;text-align:center;">Price</th>
-                                                            <th style="width: 15%;text-align:center;">Qty</th>
-                                                            <th style="width: 20%;text-align:center;">Subtotal</th>
-                                                            <th style="width: 20px;" class="satu"><i
-                                                                    class="fa fa-trash-o"></i></th>
-                                                        </tr> --}}
-                                                    </thead>
-                                                    <tbody>
-
-                                                    </tbody>
-                                                </table>
                                             </div>
                                         </div>
                                         <div id="totaldiv">
@@ -180,11 +167,12 @@
                                         <div class="card-body">
                                             <div>
                                                 @foreach ($product_item as $item)
-                                                    <button type="button" data-name="Minion Hi" id="product-0101"
+                                                <input type="hidden" id="pro_id" value="{{$item->id}}">
+                                                    <button type="button" data-name="Minion Hi" id="product_added"
                                                         value="TOY01" class="btn btn-both btn-flat product">
                                                         <span class="bg-img"><img
                                                                 src="{{ asset('uploads/products/' . $item->image) }}"
-                                                                alt="product_image" style="width: 100px; height: 100px;"
+                                                                alt="product_added" style="width: 100px; height: 100px;"
                                                                 class="rounded">
                                                         </span>
                                                         <div>
@@ -286,9 +274,17 @@
         });
 
         $(document).ready(function() {
+
+            //==================== Add Product ajax Start ========================
+
+
+
+            //==================== Add Product ajax End ========================
+
+            //==================== Add Customer ajax Start ========================
+
             $(document).on('click', '.add_customer', function(event) {
                 event.preventDefault();
-
                 var data = {
                     'name': $('.name').val(),
                     'phone': $('.phone').val(),
@@ -303,13 +299,13 @@
                     data: data,
                     url: "customers",
                     success: function(response) {
-                        console.log(response);
 
                         if (response.status == 400) {
                             $('#error_list').html("");
                             $('#error_list').addClass('alert alert-danger');
                             $.each(response.errors, function(key, err_values) {
-                                $('#error_list').append('<li>' + err_values + '</li>');
+                                $('#error_list').append('<li>' + err_values +
+                                    '</li>');
                             });
                         } else {
                             $('#error_list').html("");
@@ -325,40 +321,38 @@
             });
         });
 
-        //     $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //==================== Add Customer ajax End ========================
+
+
+
+        //==================== Add Product view ajax Start ========================
+
+        // fetchProduct();
+
+        // function fetchProduct() {
+        //     $.ajax({
+        //         type: "GET",
+        //         dataType: "json",
+        //         url: "products/index",
+        //         success: function(response) {
+
+        //             console.log(response.products);
+        //             $('tbody').html("");
+        //             $.each(response.products, function(key, value) {
+        //                 $('tbody').append('<tr>\
+        //                                                         <td>' + value.name + '</td>\
+        //                                                         <td>' + value.price + '</td>\
+        //                                                         <td>' + value.qty + '</td>\
+        //                                                         <td>' + value.price + '</td>\
+        //                                                         <td> <button type="button" value="'+value.id+'" class="btn btn-danger btn-sm delete_button" ><i class="fas fa-trash-alt"></i></button></td>\
+        //                                                     </tr>');
+        //             });
+
         //         }
         //     });
+        // }
 
-        //     //================================ store data section start================================
-        //     function addCustomer() {
-        //         var name = $('#name').val();
-        //         var phone = $('#phone').val();
-        //         var email = $('#email').val();
-        //         var customer_field1 = $('#field_1').val();
-        //         var customer_field2 = $('#field_2').val();
-        //         $.ajax({
-        //             type: "POST",
-        //             dataType: "json",
-        //             data: {
-        //                 name: name,
-        //                 phone: phone,
-        //                 email: email,
-        //                 customer_field1: field_1,
-        //                 customer_field2: field_2,
-        //             },
-        //             url: "customer/store",
-        //             success: function(data) {
-        //                 console.log('successfully dada added');
-        //             },
-        //             error: function(error) {
-        //                 $('#nameError').text(error.responseJSON.errors.name);
-        //                 $('#phoneError').text(error.responseJSON.errors.phone);
-        //                 $('#emailError').text(error.responseJSON.errors.email);
-        //             }
-        //         })
-        //     }
-        // //================================ store data section end================================
+
+        //==================== Add Product view ajax Start ========================
     </script>
 @endsection
