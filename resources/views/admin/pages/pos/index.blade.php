@@ -86,9 +86,15 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-
+                                                            <tr class="success">
+                                                                <td>Product</td>
+                                                                <td style="width: 15%;text-align:center;"><label id="name"></label></td>
+                                                                <td style="width: 15%;text-align:center;"><input id="price"></td>
+                                                                <td style="width: 20%;text-align:center;"><input id=""></td>
+                                                                <td style="width: 20px;" class="satu"><i
+                                                                        class="fas fa-trash-alt"></i></td>
+                                                            </tr>
                                                         </tbody>
-
                                                     </table>
                                                 </div>
                                             </div>
@@ -167,7 +173,9 @@
                                         <div class="card-body">
                                             <div>
                                                 @foreach ($product_item as $item)
-                                                <input type="hidden" id="pro_id" value="{{$item->id}}">
+                                                    <input type="hidden" id="pro_id" value="{{ $item->id }}">
+                                                    <input type="hidden" id="pro_price" value="{{ $item->price }}">
+                                                    <input type="hidden" id="pro_name" value="{{ $item->name }}">
                                                     <button type="button" data-name="Minion Hi" id="product_added"
                                                         value="TOY01" class="btn btn-both btn-flat product">
                                                         <span class="bg-img"><img
@@ -266,93 +274,111 @@
             </div>
         </div>
     </div>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+@endsection
+@section('scripts')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function() {
+
+        //==================== Add Product ajax Start ========================
+
+        $(document).on('click', '#product_added', function(e) {
+            e.preventDefault();
+            if(id){
+                
             }
+            let id = $('#pro_id').val();
+            let pro_price = $('#pro_price').val();
+            let pro_name = $('#pro_name').val();
+
+            $('#name').val(pro_name);
+            $('#price').val(pro_price);
+
+
+            console.log(id, pro_name, pro_price);
+
         });
 
-        $(document).ready(function() {
+        //==================== Add Product ajax End ========================
 
-            //==================== Add Product ajax Start ========================
+        //==================== Add Customer ajax Start ========================
 
+        $(document).on('click', '.add_customer', function(event) {
+            event.preventDefault();
+            var data = {
+                'name': $('.name').val(),
+                'phone': $('.phone').val(),
+                'email': $('.email').val(),
+                'field_1': $('.field_1').val(),
+                'field_2': $('.field_2').val()
+            }
 
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                data: data,
+                url: "customers",
+                success: function(response) {
 
-            //==================== Add Product ajax End ========================
+                    if (response.status == 400) {
+                        $('#error_list').html("");
+                        $('#error_list').addClass('alert alert-danger');
+                        $.each(response.errors, function(key, err_values) {
+                            $('#error_list').append('<li>' + err_values +
+                                '</li>');
+                        });
+                    } else {
+                        $('#error_list').html("");
+                        $('#success_message').addClass('alert alert-success');
+                        $('#success_message').text(response.message);
+                        $('#customerAdd').find('input').val("");
+                        $('#customerAdd').modal();
 
-            //==================== Add Customer ajax Start ========================
-
-            $(document).on('click', '.add_customer', function(event) {
-                event.preventDefault();
-                var data = {
-                    'name': $('.name').val(),
-                    'phone': $('.phone').val(),
-                    'email': $('.email').val(),
-                    'field_1': $('.field_1').val(),
-                    'field_2': $('.field_2').val()
-                }
-
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    data: data,
-                    url: "customers",
-                    success: function(response) {
-
-                        if (response.status == 400) {
-                            $('#error_list').html("");
-                            $('#error_list').addClass('alert alert-danger');
-                            $.each(response.errors, function(key, err_values) {
-                                $('#error_list').append('<li>' + err_values +
-                                    '</li>');
-                            });
-                        } else {
-                            $('#error_list').html("");
-                            $('#success_message').addClass('alert alert-success');
-                            $('#success_message').text(response.message);
-                            $('#customerAdd').find('input').val("");
-                            $('#customerAdd').modal();
-
-                        }
                     }
-                });
-
+                }
             });
+
         });
+    });
 
-        //==================== Add Customer ajax End ========================
-
-
-
-        //==================== Add Product view ajax Start ========================
-
-        // fetchProduct();
-
-        // function fetchProduct() {
-        //     $.ajax({
-        //         type: "GET",
-        //         dataType: "json",
-        //         url: "products/index",
-        //         success: function(response) {
-
-        //             console.log(response.products);
-        //             $('tbody').html("");
-        //             $.each(response.products, function(key, value) {
-        //                 $('tbody').append('<tr>\
-        //                                                         <td>' + value.name + '</td>\
-        //                                                         <td>' + value.price + '</td>\
-        //                                                         <td>' + value.qty + '</td>\
-        //                                                         <td>' + value.price + '</td>\
-        //                                                         <td> <button type="button" value="'+value.id+'" class="btn btn-danger btn-sm delete_button" ><i class="fas fa-trash-alt"></i></button></td>\
-        //                                                     </tr>');
-        //             });
-
-        //         }
-        //     });
-        // }
+    //==================== Add Customer ajax End ========================
 
 
-        //==================== Add Product view ajax Start ========================
-    </script>
+
+    //==================== Add Product view ajax Start ========================
+
+    // fetchProduct();
+
+    // function fetchProduct() {
+    //     $.ajax({
+    //         type: "GET",
+    //         dataType: "json",
+    //         url: "products/index",
+    //         success: function(response) {
+
+    //             console.log(response.products);
+    //             $('tbody').html("");
+    //             $.each(response.products, function(key, value) {
+    //                 $('tbody').append('<tr>\
+    //                                                         <td>' + value.name + '</td>\
+    //                                                         <td>' + value.price + '</td>\
+    //                                                         <td>' + value.qty + '</td>\
+    //                                                         <td>' + value.price + '</td>\
+    //                                                         <td> <button type="button" value="'+value.id+'" class="btn btn-danger btn-sm delete_button" ><i class="fas fa-trash-alt"></i></button></td>\
+    //                                                     </tr>');
+    //             });
+
+    //         }
+    //     });
+    // }
+
+
+    //==================== Add Product view ajax Start ========================
+</script>
 @endsection

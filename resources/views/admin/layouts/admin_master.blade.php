@@ -751,3 +751,4 @@
 </body>
 </html>
 @yield('modal')
+@yield('scripts')
