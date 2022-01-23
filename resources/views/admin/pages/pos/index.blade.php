@@ -87,10 +87,14 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr class="success">
-                                                                <td>Product</td>
-                                                                <td style="width: 15%;text-align:center;"><label id="name"></label></td>
-                                                                <td style="width: 15%;text-align:center;"><input id="price"></td>
-                                                                <td style="width: 20%;text-align:center;"><input id=""></td>
+                                                                {{-- <td>Product</td> --}}
+                                                                <td style="width: 15%;text-align:center;"><label id="name">name</label></td>
+                                                                <td style="width: 15%;text-align:center;"><label for="">price</label></td>
+                                                                <td style="width: 20%;text-align:center;">
+                                                                    <label for="">qty</label>
+
+                                                                </td>
+                                                                <td style="width: 20%;text-align:center;">total</td>
                                                                 <td style="width: 20px;" class="satu"><i
                                                                         class="fas fa-trash-alt"></i></td>
                                                             </tr>
@@ -176,6 +180,8 @@
                                                     <input type="hidden" id="pro_id" value="{{ $item->id }}">
                                                     <input type="hidden" id="pro_price" value="{{ $item->price }}">
                                                     <input type="hidden" id="pro_name" value="{{ $item->name }}">
+                                                    <input type="hidden" id="pro_qty" value="{{ $item->qty }}">
+
                                                     <button type="button" data-name="Minion Hi" id="product_added"
                                                         value="TOY01" class="btn btn-both btn-flat product">
                                                         <span class="bg-img"><img
@@ -290,18 +296,18 @@
 
         $(document).on('click', '#product_added', function(e) {
             e.preventDefault();
-            if(id){
-                
-            }
+
             let id = $('#pro_id').val();
-            let pro_price = $('#pro_price').val();
             let pro_name = $('#pro_name').val();
+            let pro_price = $('#pro_price').val();
+            let pro_qty = $('#pro_qty').val();
 
             $('#name').val(pro_name);
             $('#price').val(pro_price);
+            $('#price').val(pro_qty);
 
 
-            console.log(id, pro_name, pro_price);
+            console.log(id, pro_name, pro_price,pro_qty);
 
         });
 
